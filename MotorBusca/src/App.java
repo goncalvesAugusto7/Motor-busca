@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -14,8 +15,13 @@ public class App {
         try (Scanner scanner = new Scanner(System.in)) {
                 
             //pegando a localizacao do arquivo
-            System.out.println("Digite o caminho do arquivo que desenha analisar:");
-            XMLParser xml = new XMLParser(scanner.nextLine());
+            System.out.println("Digite o nome do arquivo .xml que desenha analisar");
+            String fileName = scanner.nextLine();
+
+            if(!fileName.contains(".xml")) fileName += ".xml"; //adicionando a estensao caso o usuario nao tenha colocado
+
+            String filePath = "xml-content" + File.separator + fileName;
+            XMLParser xml = new XMLParser(filePath);
 
                 //limpando o terminal
                 System.out.print("\033[H\033[2J"); 

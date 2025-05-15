@@ -3,13 +3,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        //paths: 
-            /*
-                C:\\Users\\Augusto\\Downloads\\conteudo_modificado.xml
-                C:\\Users\\Augusto\\Downloads\\verbetesWikipedia.xml
-             */
-
-
+            
         //menuInterativo();
         preProcessamento();
 
@@ -30,24 +24,20 @@ public class App {
             //montando mapa pre processado
             PreProcess preProcess = new PreProcess(xml);
             HashMap<Integer,HashMap<String,Double>> mapa = preProcess.getMapaPreProcessado();
-                    //System.out.println(mapa);
 
             //loop de execucao
             while(true){
                 
                 System.out.println("Digite sua pesquisa:");
                 String entrada = scanner.nextLine();
-                //System.out.print("Saindo do cash? ");
-                if(!preProcess.getCash().containsKey(entrada)){ //a esntrada nao esta no cash, procurando no mapa pre processado
+                //a entrada nao esta no cash, procurando no mapa pre processado
+                if(!preProcess.getCash().containsKey(entrada)){ 
 
-                    //System.out.print("Nao");
                     String saida = "\n"+preProcess.ordenarPorValores(preProcess.pesquisarPalavras(mapa, entrada));
-                    //System.out.println(preProcess.pesquisarPalavras(mapa, entrada));
                     System.out.println(saida);
                     preProcess.putCash(entrada, saida);
                 }else{  //a entrada ja esta no cash, retornando o valor ja registrado
 
-                    //System.out.print("Sim");
                     System.out.println(preProcess.getCash().get(entrada));
                 }
             }
@@ -68,9 +58,9 @@ public class App {
 
             String selec = scanner.nextLine();
 
-            //limpando o terminal
-            System.out.print("\033[H\033[2J"); 
-            System.out.flush();
+                //limpando o terminal
+                System.out.print("\033[H\033[2J"); 
+                System.out.flush();
 
 
             if(selec.equals("1")){
